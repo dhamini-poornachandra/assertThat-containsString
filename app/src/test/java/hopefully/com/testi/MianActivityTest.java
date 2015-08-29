@@ -12,6 +12,7 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.fest.assertions.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.matchers.JUnitMatchers.containsString;
 
 /**
@@ -56,5 +57,22 @@ public class MianActivityTest {
         final StringBuilder sb = new StringBuilder(textView.getText());
         String text = sb.toString();
         org.junit.Assert.assertThat(text, containsString("Hello, Peter !"));
+    }
+
+    @Test
+    public void testAssertThatNotContainsString() {
+        activity = Robolectric.setupActivity(MainActivity.class);
+        TextView textView = (TextView) activity.findViewById(R.id.textView);
+        Button button = (Button) activity.findViewById(R.id.button);
+        EditText editText = (EditText) activity.findViewById(R.id.editText);
+
+        editText.setText("Peter");
+        button.performClick();
+
+        final StringBuilder sb = new StringBuilder(textView.getText());
+        String text = sb.toString();
+//        org.junit.Assert.assertThat(text, containsString("Hello, Peter !"));
+//        org.junit.Assert.assertThat(text, not(startsWith("Hello")));
+        org.junit.Assert.assertThat(text, not(containsString("dhamini")));
     }
 }
