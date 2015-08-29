@@ -24,35 +24,37 @@ import static org.junit.matchers.JUnitMatchers.containsString;
 @RunWith(RobolectricGradleTestRunner.class)
 
 public class MianActivityTest {
-private MainActivity activity;
+    private MainActivity activity;
+
+
     @Test
     public void shouldProduceGreetingWhenButtonPressed() {
-         activity = Robolectric.setupActivity(MainActivity.class);
+        activity = Robolectric.setupActivity(MainActivity.class);
+
         TextView textView = (TextView) activity.findViewById(R.id.textView);
-//        String h = "hello world";
         Button button = (Button) activity.findViewById(R.id.button);
         EditText editText = (EditText) activity.findViewById(R.id.editText);
-        editText.setText("Peter");
-//        textView.setText("Hello, Peter!");
+
+        editText.setText("dhamini");
+
         button.performClick();
-//        assertTrue("TextView contains incorrect text",
-//                "hello_world".equals(textView.getText().toString()));
+
         assertThat(textView).isNotNull();
+
+    }
+
+    @Test
+    public void testAssertThatContainsString() {
+        activity = Robolectric.setupActivity(MainActivity.class);
+        TextView textView = (TextView) activity.findViewById(R.id.textView);
+        Button button = (Button) activity.findViewById(R.id.button);
+        EditText editText = (EditText) activity.findViewById(R.id.editText);
+
+        editText.setText("Peter");
+        button.performClick();
+
         final StringBuilder sb = new StringBuilder(textView.getText());
         String text = sb.toString();
         org.junit.Assert.assertThat(text, containsString("Hello, Peter !"));
-//        assertThat(textView).containsText("Hello, Peter!");
-//        assertThat(textView.getText(), containsString("Hello, Peter!"));
-
-
     }
-//    @Test
-//    public void testAssertThatBothContainsString() {
-//        TextView textView = (TextView) activity.findViewById(R.id.textView);
-//        final StringBuilder sb = new StringBuilder(textView.getText().length());
-////        sb.append(charSequence);
-//        String text = sb.toString();
-////        String text = toString(textView.getText());
-//        org.junit.Assert.assertThat(text, containsString("b"));
-//    }
 }
